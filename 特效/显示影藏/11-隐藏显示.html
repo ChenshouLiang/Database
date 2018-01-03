@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: #cc6600;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+<input id="btn" type="button" value="隐藏">
+<div id="box">
+
+</div>
+
+<script>
+    //var o = new Object();
+    //o.name = "abc";
+
+
+    var btn = document.getElementById("btn");
+
+    btn.onclick = function () {
+        //找到box对象
+        var box = document.getElementById("box");
+        //判断当前点击是要显示还是隐藏
+        if (this.value === "隐藏") {
+            //设置box对象的属性
+            box.className = "hide";
+            //修改按钮上的文字
+            this.value = "显示";
+        } else {
+            box.className = "show";
+            this.value = "隐藏";
+        }
+    };
+
+
+</script>
+</body>
+</html>

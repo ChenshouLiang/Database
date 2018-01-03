@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 30px;
+			height: 400px;
+			position: absolute;
+			left: 0px;
+			top: 10px;
+			overflow: hidden;
+		}
+		.box .content{
+			width: 0px;
+			height: 400px;
+			background-color: yellowgreen;
+		}
+		.box .jiujiu{
+			position: absolute;
+			bottom:50px;
+			right: 0px;
+			background-color: skyblue;
+			width: 30px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="content"></div>
+		<div class="jiujiu"></div>
+	</div>
+
+	<script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+		$(".jiujiu").mouseenter(function(){
+			$(".box").stop(true).animate({"width":330},500);
+			$(".box .content").stop(true).animate({"width":300},500);
+		})
+
+		$(".box").mouseleave(function(){
+			$(".box").animate({"width":30},500);
+			$(".box .content").animate({"width":0},500);
+		})
+	</script>
+</body>
+</html>

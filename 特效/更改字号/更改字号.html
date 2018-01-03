@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.content{
+			font-size: 18px;
+			line-height: 125%;
+		}
+		.active{
+			border: none;
+			background-color: #ccc;
+		}
+		.disable{
+			border: none;
+			background-color: #333;
+		}
+	</style>
+</head>
+<body>
+	<input type="button"  value="字号增大" id="btnPlus"/>
+	<input type="button"  value="字号减小" id="btnMinus" />
+	<div class="content" id="box">
+		<p>文字文</p>
+		<p>文字文文字</p>
+		<p>文字字文字</p>
+	</div>
+
+	<script type="text/javascript">
+		//得到元素
+		var oBox = document.getElementById("box");
+		var btnMinus = document.getElementById("btnMinus");
+		var btnPlus = document.getElementById("btnPlus");
+
+		//信号量
+		var fs = 18;
+
+		btnPlus.onclick = function(){
+			//先改变信号量
+			fs+=2;
+			if(fs >= 30){
+				fs = 30;
+				this.className = "disable";		//到头了，自己是不激活的状态
+			}
+			oBox.style.fontSize = fs + "px";
+		}
+
+		btnMinus.onclick = function(){
+			//先改变信号量
+			fs-=2;
+			if(fs <= 10){
+				fs = 10;
+				this.className = "disable";		//到头了，自己是不激活的状态
+			}
+			oBox.style.fontSize = fs + "px";
+		}
+	</script>
+</body>
+</html>

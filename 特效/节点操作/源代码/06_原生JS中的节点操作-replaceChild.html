@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<p>杨幂</p>
+		<p id="ab">Angelababy</p>
+		<p>刘诗诗</p>
+	</div>
+
+	<script type="text/javascript">
+		var oDiv = document.getElementsByTagName("div")[0];
+		var ab =document.getElementById("ab");
+
+		// 创建节点，孤儿节点
+		var oP = document.createElement("p");
+		oP.innerHTML = "黄晓明";
+
+		//替换节点
+		oDiv.replaceChild(oP, ab);
+	</script>
+</body>
+</html>

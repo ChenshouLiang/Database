@@ -1,0 +1,66 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+img{
+	border:none;
+}
+.carousel{
+	width: 560px;
+	height: 300px;
+	margin: 100px auto;
+	border: 1px solid #000;
+	position: relative;
+ 	overflow: hidden;
+}
+.carousel .imageList ul{
+	list-style: none;
+	position: relative;
+}
+.carousel .imageList ul li{
+	position: absolute;
+	top: 0;
+	left: 560px;
+	width: 560px;
+	height: 300px;
+}
+.carousel .imageList ul li.first{
+	left: 0;
+}
+.btns a{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	background-color: yellow;
+	z-index: 999;
+}
+.btns a.leftBtn{
+	left: 10px;
+}
+.btns a.rightBtn{
+	right: 10px;
+}
+.circles{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 150px;
+	height: 18px;
+}
+.circles ol{
+	list-style: none;
+}
+.circles ol li{
+	float: left;
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+	border-radius: 50%;
+	background-color: pink;
+	cursor: pointer;
+}
+.circles ol li.cur{
+	background-color: purple;
+}

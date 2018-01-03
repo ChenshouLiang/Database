@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select{
+            width: 100px;
+            height: 150px;
+        }
+        option{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+        }
+        input{
+            width: 50px;
+            height: 25px;
+            border-radius:15px;
+            background-color: #000;
+            color:#fff; 
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <select multiple="multiple" id="left">
+        <option>苹果</option>
+        <option>香蕉</option>
+        <option>梨</option>
+        <option>橘子</option>
+        <option>西瓜</option>
+    </select>
+    <input type="button" value="<<" id="btn1">
+    <input type="button" value="<" id="btn2">
+    <input type="button" value=">" id="btn3">
+    <input type="button" value=">>" id="btn4">
+    <select multiple="multiple" id="right"></select>
+    </div>
+    <div>
+        <select multiple="multiple" id="left1">
+        <option>陈首良</option>
+        <option>笪菲</option>
+        <option>程晨</option>
+        <option>董姚</option>
+        <option>高云伟</option>
+    </select>
+    <input type="button" value="<<" id="btn6">
+    <input type="button" value="<" id="btn7">
+    <input type="button" value=">" id="btn8">
+    <input type="button" value=">>" id="btn9">
+    <select multiple="multiple" id="right1"></select>
+    </div>
+</body>
+    <script>
+        function my$(id) {
+             return document.getElementById(id);
+        }
+        var btn1 = my$("btn1");
+        btn1.onclick = function(){
+            var right = my$("right");
+            var left  = my$("left");
+            left.innerHTML += right.innerHTML;
+            right.innerHTML = "";
+        }
+        var btn4 = my$("btn4");
+        btn4.onclick = function(){
+            var right = my$("right");
+            var left  = my$("left");
+            right.innerHTML += left.innerHTML;
+            left.innerHTML = "";
+        }
+        var btn2 =my$("btn2");
+        btn2.onclick = function(){
+            var right = my$("right");
+            var left  = my$("left");
+            for (var i = 0; i < right.children.length; i++) {
+                var option = right.children[i];
+                if (option.selected) {
+                    left.appendChild(option);
+                    i--;
+                }
+            }
+        }
+        var btn3 =my$("btn3");
+        btn3.onclick = function(){
+            var right = my$("right");
+            var left  = my$("left");
+            for (var i = 0; i < left.children.length; i++) {
+                var option = left.children[i];
+                if (option.selected) {
+                    right.appendChild(option);
+                    i--;
+                }
+            }
+        }
+    </script>
+    <script>
+       function my$(id){
+          return document.getElementById(id);
+       }
+        var btn6 = my$("btn6");
+        btn6.onclick = function(){
+            moveAll("right1","left1");
+        }
+        var btn9 = my$("btn9");
+        btn9.onclick = function(){
+            moveAll("left1","right1");
+        }
+        function moveAll(t1,t2){
+            var t1 = my$(t1);
+            var t2 = my$(t2);
+            for (var i = 0; i <t1.children .length; i++) {
+               var option = t1.children[i];
+               t2.appendChild(option);
+               i--; 
+            }
+        }
+        var btn7 = my$("btn7");
+        btn7.onclick = function(){
+            moveSelect("right1","left1");
+        }
+        var btn8 = my$("btn8");
+        btn8.onclick = function(){
+            moveSelect("left1","right1");
+        }
+        function moveSelect(t1,t2){
+            var t1 = my$(t1);
+            var t2 = my$(t2);
+            for (var i = 0; i <t1.children .length; i++) {
+               var option = t1.children[i];
+               if (option.selected) {
+                    t2.appendChild(option);
+                    i--; 
+               }      
+            }
+        }
+    </script>
+</html>

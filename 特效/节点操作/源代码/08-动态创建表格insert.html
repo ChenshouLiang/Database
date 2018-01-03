@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table input {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="insert" id="btn">
+    </div>
+
+    <script>
+        var heads = ["姓名", "学科", "成绩", "操作"];
+
+        var datas = [
+            {"name":"张三1","subject":"语文1","score":99.8},
+            {"name":"张三2","subject":"语文2","score":80.8},
+            {"name":"张三3","subject":"语文3","score":70.8},
+            {"name":"张三4","subject":"语文4","score":100},
+            {"name":"张三5","subject":"语文5","score":60},
+            {"name":"张三6","subject":"语文6","score":70},
+            {"name":"张三7","subject":"语文7","score":89.8}
+        ];
+
+        window.onload = function () {
+            var box = document.getElementById("box");
+
+            //刷新表格
+            var table = createTable(box,heads,datas);
+
+            //插入一行
+            // var btn = document.getElementById("btn");
+            // btn.onclick = function () {
+            //     //新生成一行
+
+            //     var row = table.insertRow(table.rows.length);
+            //     for (var i = 0; i < 3; i++) {
+            //         var cell = row.insertCell(i);
+            //         cell.innerHTML = "<input type='text' />";
+            //     }
+            //     cell = row.insertCell(-1);
+            //     cell.innerHTML ='<a href="#">确定</a>&nbsp;<a href="#">取消</a>';
+
+            //     //确定 取消
+            //     var sure = cell.children[0];
+            //     var cancel = cell.children[1];
+
+            //     //给按钮注册事件
+            //     sure.onclick = function () {
+            //         var td = this.parentNode.parentNode;
+            //         var t1 = row.cells[0].firstElementChild.value;
+            //         var t2 = row.cells[1].firstElementChild.value;
+            //         var t3 = row.cells[2].firstElementChild.value;
+            //         datas.push({"name":t1,"subject":t2,"score":parseFloat(t3) });
+            //         //删除表格
+            //         table.parentNode.removeChild(table);
+            //         //刷新表格
+            //         table = createTable(box,heads,datas);
+
+            //         return false;
+            //     }
+
+            //     cancel.onclick = function () {
+            //         //点击删除本行
+            //         var tr = this.parentNode.parentNode;
+            //         tr.parentNode.removeChild(tr);
+            //     }
+            // }
+        }
+
+        function createTable(parent, heads, datas) {
+            //创建table
+            var table = document.createElement("table");
+            parent.appendChild(table);
+
+            table.border = "1px";
+            table.style.width = "400px";
+
+            //创建表头
+            var thead = table.createTHead();
+            thead.style.backgroundColor = "lightgray";
+            var row = thead.insertRow(0);
+
+            heads.forEach(function (item, index) {
+                var th = document.createElement("th");
+                th.style.height = "40px";
+                thead.appendChild(th);
+                setInnerText(th, item);
+            });
+
+            // createCells(table, datas);
+
+            // function createCells(table, datas) {
+            //     var tbody = document.createElement("tbody");
+            //     table.appendChild(tbody);
+            //     tbody.style.textAlign = "center";
+            //     datas.forEach(function (item, index) {
+            //         var row = tbody.insertRow(index);
+
+            //         var i = 0;
+            //         for(var key in item) {
+            //             var cell = row.insertCell(i);
+            //             i++;
+            //             setInnerText(cell, item[key]);
+            //         }
+
+            //         cell = row.insertCell(i);
+            //         cell.innerHTML = "<a href='#' index='"+ index +"'>删除</a>";
+
+            //         //删除
+            //         var link = cell.firstElementChild;
+            //         link.onclick = function () {
+
+            //             tbody.deleteRow(indexOfRows(tbody,this.parentNode.parentNode));
+            //         }
+            //     });
+            // }
+            return table;
+        }
+
+
+
+        //返回行的索引
+        // function indexOfRows(tbody, row) {
+        //     var index = -1;
+        //     for(var i = 0; i < tbody.rows.length; i++) {
+        //         if (tbody.rows[i] === row) {
+        //             index = i;
+        //             break;
+        //         }
+        //     }
+        //     return index;
+        // }
+
+        //设置innerText
+        function setInnerText(element,content) {
+            if (element.textContent) {
+                element.textContent = content;
+            }else{
+                element.innerText = content;
+            }
+        }
+    </script>
+</body>
+</html>

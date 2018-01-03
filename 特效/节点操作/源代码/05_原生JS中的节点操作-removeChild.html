@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ 
+	<ul>
+		<li>吃饭 <a href="javascript:;">删除</a></li>
+		<li>睡觉 <a href="javascript:;">删除</a></li>
+		<li>打豆豆 <a href="javascript:;">删除</a></li>
+	</ul>
+
+	<script type="text/javascript">
+		var ul = document.getElementsByTagName("ul")[0];
+		var lis = ul.getElementsByTagName("li");
+ 		var as = ul.getElementsByTagName("a");
+
+ 		//给所有a标签添加监听
+ 		for(var i = 0 ; i < as.length ; i++){
+ 			as[i].onclick = function(){
+ 				ul.removeChild(this.parentNode);
+ 			}
+ 		}
+	</script>
+</body>
+</html>

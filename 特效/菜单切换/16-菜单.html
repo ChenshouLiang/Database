@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #list li {
+            list-style-type: none;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            background-color:beige;
+            text-align: center;
+            float: left;
+            margin-left: 5px;
+        }
+
+        #list li.current {
+            background-color: burlywood;
+        }
+
+        #list li a {
+            text-decoration: none;
+        }
+
+        .odd {
+            background-color: #cccccc;
+        }
+        .even {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <ul id="list">
+        <li class="current"><a href="javascript:void(0)">首页</a></li>
+        <li><a href="javascript:void(0)">播客</a></li>
+        <li><a href="javascript:void(0)">博客</a></li>
+        <li><a href="javascript:void(0)">相册</a></li>
+        <li><a href="javascript:void(0)">关于</a></li>
+        <li><a href="javascript:void(0)">帮助</a></li>
+    </ul>
+</div>
+
+
+<script>
+    //1 childNodes  是DOM标准中提供的方法
+    //2 children  几乎所有的浏览器都支持，不是DOM中的标准方法
+
+
+
+    //1 找到所有的li
+    var ul = document.getElementById("list");
+
+
+    //children和getElementsByTagName的区别
+    //getElementsByTagName获取到的是同一个类型的标签
+    //children 获取到的是父元素中所有的子元素，标签类型可以不同
+
+
+
+//    ul.children
+//    ul.childNodes
+
+//    var list = ul.getElementsByTagName("li");
+
+    var list = ul.children;
+    for(var i = 0; i < list.length; i++) {
+        var li = list[i];
+
+        //2 给所有的li注册事件
+        li.onclick = function () {
+
+            //3 让当前的li高亮显示，其他的li取消高亮显示
+            for(var i = 0; i < list.length; i++) {
+                li = list[i];
+                li.removeAttribute("class");
+            }
+            //
+            this.setAttribute("class","current");
+
+//            this.className
+        };
+    }
+
+</script>
+</body>
+</html>

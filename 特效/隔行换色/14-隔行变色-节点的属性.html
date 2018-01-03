@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .even {
+            background-color: #cc6600;
+        }
+        .odd {
+            background-color: #036663;
+        }
+    </style>
+</head>
+<body>
+    <ul id="mv">
+        <li>昭君</li>
+        <!-- hello -->
+        <li>西施</li>
+        <li>貂蝉</li>
+        <li>冯冀</li>
+    </ul>
+    <script>
+        var mv = document.getElementById("mv");
+
+        //获取ul的子节点
+        var children = mv.childNodes;
+        var index = 0;
+        for(var i = 0; i < children.length; i++) {
+            var child = children[i];
+            //判断子节点是否是元素
+            if (child.nodeType === 1) {
+
+                if(index % 2 === 0) {
+                    child.setAttribute("class","odd");
+                }else{
+                    child.setAttribute("class","even");
+                }
+                index++;
+            }
+        }
+
+
+
+//        //文本节点
+//        //nodeType = 3
+//        console.log(children[0].nodeType);
+//        //nodeValue  文本的内容
+//        console.log(children[0].nodeValue);
+//        //nodeName   #text
+//        console.log(children[0].nodeName);
+
+
+
+//        //元素节点
+//        //nodeType = 1
+//        console.log(children[1].nodeType);
+//        //nodeValue 如果是元素节点，始终是null
+//        console.log(children[1].nodeValue);
+//        //nodeName  标签的名字
+//        console.log(children[1].nodeName);
+
+
+//        //注释节点
+//        //nodeType = 8
+//        console.log(children[3].nodeType);
+//        //nodeValue 注释的内容
+//        console.log(children[3].nodeValue);
+//        //nodeName   #comment
+//        console.log(children[3].nodeName);
+
+
+        //属性节点
+//        var attrNode = mv.getAttributeNode("id");
+//        //nodeType = 2
+//        console.log(attrNode.nodeType);
+//        //nodeValue   属性的值
+//        console.log(attrNode.nodeValue);
+//        //nodeName  属性的名字
+//        console.log(attrNode.nodeName);
+
+        //节点的属性
+        //nodeName
+        //nodeType
+        //nodeValue
+
+
+
+    </script>
+</body>
+</html>

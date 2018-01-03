@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 400px;
+            margin: 200px auto;
+        }
+        #txtSearch {
+            width: 300px;
+        }
+
+        #pop {
+            width: 300px;
+            border: 1px red solid;
+            padding: 0px;
+        }
+
+        #pop ul {
+            list-style-type: none;
+            margin:5px;
+            padding: 0px;
+        }
+        #pop ul li {
+
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="txtSearch"><input type="button" value="搜索" id="btnSearch">
+
+</div>
+<script src="common.js"></script>
+    <script>
+        //todo  鼠标放到li上高亮显示
+        //todo  点击li，把li中的内容，放到文本框中
+
+        //todo 可选  方向选择li
+
+
+//        var str = "aaa";
+//        str.indexOf("a") === 0
+
+        //模拟数据
+        var datas = ["高云伟饿了","高云伟瘦了","高云伟笑了","高云伟丑了","高云伟胖了","abcdef","abzzzzzz"];
+
+        var txt = my$("txtSearch");
+        //给文本框注册事件
+        txt.onkeyup = function () {
+            //获取文本框的内容
+            var v = this.value;
+            //1 遍历数组，找到以v开头的数据
+            var filterArr = [];
+            for(var i = 0; i < datas.length; i++) {
+                var data = datas[i];
+                if(data.indexOf(v) === 0) {
+                    filterArr.push(data);
+                }
+            }
+            
+//            console.log(filterArr);
+            //获取动态生成的div
+            var popDiv = my$("pop");
+            //判断页面上是否存在pop的div
+            if(popDiv) {
+                //如果存在，删除div。继续往后执行
+                my$("box").removeChild(popDiv);
+            }
+            //如果没有检索到数据，不生成div
+            if(filterArr.length === 0) {
+                return;
+            }
+            //如果文本框内没有内容，不生成div
+            if(v.length === 0) {
+                return;
+            }
+
+
+
+
+            //2 创建div，创建列表，显示数据
+            var popDiv = document.createElement("div");
+            //把popDiv添加到页面上来
+            my$("box").appendChild(popDiv);
+
+            popDiv.id = "pop";
+
+            //创建列表  ul li
+            var ul = document.createElement("ul");
+            popDiv.appendChild(ul);
+
+            //遍历数据，生成列表
+            for(var i = 0; i < filterArr.length; i++) {
+                var item = filterArr[i];
+                //创建li
+                var li = document.createElement("li");
+                ul.appendChild(li);
+                //设置内容
+                setInnerText(li, item);
+            }
+
+
+
+        };
+
+    </script>
+
+
+</body>
+</html>

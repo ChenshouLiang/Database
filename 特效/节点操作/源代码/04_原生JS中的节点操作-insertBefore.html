@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="txt" />
+	<input type="button" id="btn" value="按我"/>
+	<ul>
+		
+	</ul>
+
+	<script type="text/javascript">
+		var ul = document.getElementsByTagName("ul")[0];
+		var lis = ul.getElementsByTagName("li");
+		var txt = document.getElementById("txt");
+		var btn = document.getElementById("btn");
+
+		btn.onclick = function(){
+			//创建一个新的li，创建出来之后就是一个孤儿节点
+			var oLi = document.createElement("li");
+			//改变innerHTML
+			oLi.innerHTML = txt.value;
+			//在lis[0]的前面插入
+			ul.insertBefore(oLi, lis[0]);
+		}
+			
+	</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+			<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.car_pic{
+			width: 500px;
+			height: 421px;
+			border: 1px solid #000;
+			margin-left:100px;
+			position: relative;
+		}
+		.car_pic ul{
+			list-style: none;
+		}
+		.car_pic ul li{
+			display: none;
+			width: 500px;
+			height: 375px;
+		}
+		.car_pic ul li img{
+			width: 500px;
+			height: 375px;
+		}
+		.car_pic ul li.cur{
+			display: block;
+		}
+		.car_pic_ctr{
+			width: 405px;
+			height: 26px;
+			line-height: 26px;
+			font-size: 12px;
+			margin: 0 auto;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0 -26px;
+		}
+		.car_pic_ctr .ctr_l{
+			float: left;
+			width: 0px;
+			height: 26px;
+			padding-left: 20px;
+			background: url(images/h1/car_pic_ctr.png) no-repeat 0 0px;
+		}
+		.car_pic_ctr .ctr_r{
+			float: right;
+			width: 0px;
+			height: 26px;
+			padding-right: 45px;
+			background: url(images/h1/car_pic_ctr.png) no-repeat 25px -78px;
+		}
+		.car_pic_ctr .ctr_center{
+			float: left;
+			width: 300px;
+			height: 26px;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0px -52px;
+			margin: 0 20px;
+			position: relative;
+			cursor: pointer;
+		}
+		.car_pic_ctr .ctr_center b{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 21px;
+			height: 26px;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0px -104px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="car_pic">
+		<div class="imglist" id="imglist">
+			<ul>
+				<li class="cur"><img src="images/h1/0.jpg" alt="" /></li>
+				<li><img src="images/h1/1.jpg" alt="" /></li>
+				<li><img src="images/h1/2.jpg" alt="" /></li>
+				<li><img src="images/h1/3.jpg" alt="" /></li>
+				<li><img src="images/h1/4.jpg" alt="" /></li>
+				<li><img src="images/h1/0.jpg" alt="" /></li>
+				<li><img src="images/h1/1.jpg" alt="" /></li>
+				<li><img src="images/h1/2.jpg" alt="" /></li>
+				<li><img src="images/h1/3.jpg" alt="" /></li>
+				<li><img src="images/h1/4.jpg" alt="" /></li>
+			</ul>
+		</div>
+		<div class="car_pic_ctr">
+			<div class="ctr_l">0°</div>
+			<div class="ctr_center" id="ctr_center">
+				<b id="barB"></b>
+			</div>
+			<div class="ctr_r">180°</div>
+		</div>
+	</div>
+</body>
+<script src="scroll.js"></script>
+	<script>
+	   var imglistlis = document.getElementById('imglist').getElementsByTagName('li');//获取图片
+	   var ctr_center = document.getElementById('ctr_center');//滑道
+	   var barB = document.getElementById('barB');//滚动条
+	   var maxLeft = ctr_center.clientWidth - barB.clientWidth;//最大滚动长度
+	   var step = maxLeft /4;//一张图片的长度
+	   var idx = 0;
+	    	barB.onmousedown = function(event){
+	    		event = event || window.event;
+	    		var deltaX = event.clientX - this.offsetLeft;
+	    		document.onmousemove = function(event){
+	    			event = event || window.event;
+	    			var x = event.clientX - deltaX;
+	    			x = parseInt(x/step) * step;
+	    			
+	    			if (x<0) {
+	    				x=0;
+	    			}else if (x>maxLeft) {
+	    				x = maxLeft;
+	    			}
+
+	    			if (idx !=parseInt(x/step)) {
+     					imglistlis[idx].className="";
+     					idx=parseInt(x/step);
+     					barB.style.left=x+"px";
+     					imglistlis[idx].className="cur";
+
+	    			}
+
+	    			return false;
+	    		}
+
+	    		document.onmouseup = function(){
+	    			document.onmousemove = null;
+	    		}
+
+	    	}
+
+	    	ctr_center.onmousedown = function(event){
+	    		event = event || window.event;
+	    		var x=event.clientX-getAllLeft(ctr_center);
+	    		imglistlis[idx].className="";
+	    		idx=Math.round(x/step);
+	    		barB.style.left=idx*step+"px";
+	    		imglistlis[idx].className="cur";
+	    	}
+
+	</script>
+</html>

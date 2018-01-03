@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {margin:0; padding: 0;}
+        ul {
+            list-style-type: none;
+        }
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .hd {
+            height: 45px;
+        }
+        .hd span {
+            display:inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .hd span.current {
+            background-color: purple;
+        }
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+        }
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box" id="box">
+    <div class="hd">
+        <span class="current">体育</span>
+        <span>娱乐</span>
+        <span>新闻</span>
+        <span>综合</span>
+    </div>
+    <div class="bd">
+        <ul>
+            <li class="current">我是体育模块</li>
+            <li>我是娱乐模块</li>
+            <li>我是新闻模块</li>
+            <li>我是综合模块</li>
+        </ul>
+    </div>
+</div>
+<script>
+    //目标：tab
+
+    //1 点击span，让当前点击的span选中，其他的span不选中
+    //1.1 获取span对象
+    var box = document.getElementById("box");
+    var spans = box.getElementsByTagName("span");
+    var list = box.getElementsByTagName("li");
+
+    //1.2 注册事件
+    for(var i = 0; i < spans.length; i++) {
+        var span = spans[i];
+        //记录span的索引--index是自定义属性
+        span.index = i;
+
+        span.onclick = function () {
+            //1.3 其他的span不选中
+            for(var i = 0; i < spans.length;i++) {
+                span = spans[i];
+                span.className = "";
+            }
+            //1.4 让当前点击的span选中
+            this.className = "current";
+
+            //2 让对应的li选中，让其他的li不选中
+            //2.1 让所有的li不选中
+            for(var i = 0; i < list.length; i++) {
+                var li = list[i];
+                li.className = "";
+            }
+            //2.2 让当前的li选中
+            //获取当前点击的span的索引
+            var index = this.index;
+            list[index].className = "current";
+        };
+    }
+
+
+</script>
+</body>
+</html>

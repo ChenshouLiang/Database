@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	* {margin: 0;padding: 0;}
+		.box{
+			width: 350px;
+			height: 350px;
+			margin:100px; 
+			border: 1px solid #000;
+			position: relative;
+		}
+		.box1{
+			width: 400px;
+			height: 500px;
+			border: 3px solid #f45;
+			overflow: hidden;
+			position: absolute;
+			top:0;
+			left:360px;
+			display: none;
+		}
+		.small{
+			position: relative;
+		}
+		.mask{
+			width: 100px;
+			height: 100px;
+			background: #ff00ff;
+			cursor: move;
+			opacity: 0.3;
+			display: none;
+			position: absolute;
+			top:0;
+			left:0;
+			display: none;
+		}
+		.box1 img{
+			position: absolute;
+			top:0;
+			left:0;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="small">
+			<img src="001.jpg">
+			<div class="mask"></div>
+		</div>
+		<div class="box1"><img src="0001.jpg"></div>
+	</div>
+	<script>
+		var box = document.getElementById('box');
+		var small = box.children[0];
+		var mask = small.children[1];
+		var box1 = box.children[1];
+		var img = box1.children[0];
+		 small.onmouseover = function(){
+			box1.style.display = "block";
+			mask.style.display = "block";
+		}
+		 small.onmouseout = function(){
+			box1.style.display = "none";
+			mask.style.display = "none";
+		}
+		var x = 0;
+		var y = 0;
+		small.onmousemove = function(event){	
+			var event = event || window.event;
+			x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth /2;
+			y = event.clientY - this.offsetParent.offsetTop - mask.offsetHeight /2;
+			if (x<0) {x=0}
+			else if(x>small.offsetWidth- mask.offsetWidth)
+				{x = small.offsetWidth - mask.offsetWidth};
+			if (y<0) {y=0}
+			else if(y > small.offsetHeight - mask.offsetHeight)
+         			{y = small.offsetHeight - mask.offsetHeight;}
+			mask.style.left = x + "px";
+			mask.style.top = y + "px";
+			img.style.left = -x*box1.offsetWidth /small.offsetWidth+"px";
+			img.style.top =  -y*box1.offsetHeight /small.offsetHeight + "px";
+		}
+	</script>
+</body>
+</html>

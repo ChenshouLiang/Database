@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style type="text/css">
+	*{
+		margin:0;
+		padding:0; 
+	}
+		.header{
+			margin:0 auto;
+		}
+		.banner{
+			width:800px;
+			height: 440px;
+			margin:0 auto; 
+			position: relative;
+		}
+		.banner ul li{
+			width: 1250px;
+			height: 440px;
+			list-style: none;
+			position: absolute;
+			left:800;
+			top: 0;
+			opacity: 0;
+			filter:alpha(opacity = 0);
+		}
+		.banner ul li.first{
+			opacity: 1;
+			filter:alpha(opacity = 0);
+		}
+		.dian{
+			width: 600px;
+			height: 30px;
+			position: absolute;
+			bottom:0;
+			left:0;
+			z-index: 999;
+		}
+		.dian ol{
+			line-height: 20px;
+			height: 25px;
+			float: right;
+			margin-right: 60px;
+		}
+		.dian ol li{
+			width: 15px;
+			height: 15px;
+			border-radius:50%; 
+			background: #999;
+			display: inline-block;
+			color:#fff;
+			text-align: center;
+			margin-right: 5px;
+			cursor: pointer;
+			line-height: 15px;
+		}
+		.dian li:hover{
+			background: #fff;
+		}
+		.jiantou{
+			position:absolute;
+			top:50%;
+			width:830px;
+			height: 50px;
+		}
+		.left{
+			width: 35px;
+			height:35px;
+			float: left;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+		.right{
+			width: 35px;
+			height:35px;
+			position: absolute;
+			right:10px;
+			margin-right:10px;
+			cursor: pointer;
+		}
+		.right img{
+			position: absolute;
+			right:5px;
+		}
+		.left:hover{
+			width: 35px;
+			height:50px;
+			background: #000;
+			opacity: 0.5;
+		}
+		.right:hover{
+			width: 35px;
+			height:50px;
+			background: #000;
+			opacity: 0.5;
+		}
+		.banner ul li img{
+			width: 830px;
+			height: 440px;
+		}
+		.dian ol li.cur{
+			background-color: #fff;
+		}
+		#jiantou{
+			display: none;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="header" id="header">
+		<div class="banner" id="banner">
+			<ul>
+				<li class="first" style="background: rgb(0, 100, 233);">
+					<img src="01.jpg" alt="">
+				</li>
+				<li  style="background: #f2f2f2;">
+					<img src="02.jpg" alt="">
+				</li>
+				<li  style="background: rgb(250, 91, 9);">
+					<img src="03.jpg" alt="">
+				</li>
+				<li  style="background: rgb(250, 91, 9);">
+					<img src="05.jpg" alt="">
+				</li>
+				<li  style="background: rgb(250, 91, 9);">
+					<img src="05.jpg" alt="">
+				</li>
+				<li  style="background: rgb(250, 91, 9);">
+					<img src="06.jpg" alt="">
+				</li>
+				<li  style="background: rgb(250, 91, 9);">
+					<img src="07.jpg" alt="">
+				</li>
+				<li style="background: rgb(5, 7, 19);">
+					<img src="08.jpg" alt="">
+				</li>
+			</ul>
+				<div class="jiantou" id="jiantou">
+					<div class="left" id="left"><img src="返回.png"></div>
+					<div class="right" id="right"><img src="更多.png"></div>
+				</div>
+				<div class="dian" id="dian">
+					<ol>
+						<li class="cur"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ol>
+				</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+			var header=document.getElementById('header');
+			var lis = document.getElementById("banner").getElementsByTagName('ul')[0].getElementsByTagName("li");
+			var left= document.getElementById('left');
+			var right = document.getElementById('right');
+			var dian = document.getElementById("dian").getElementsByTagName("li");
+			var jiantou =document.getElementById('jiantou');
+			var imgLength = lis.length;
+			var interval = 2000; 
+			var idx = 0;
+			console.log(lis);
+			var timer = setInterval(rightBtnHandler,interval);
+			header.onmouseover = function(){
+				clearInterval(timer);
+				jiantou.style.display="block";
+			}
+			header.onmouseout = function(){
+			timer = setInterval(rightBtnHandler,interval);
+			jiantou.style.display="none";
+			}
+			right.onclick = rightBtnHandler;
+ 		function rightBtnHandler(){
+ 			if(lis[idx].isanimated) return;
+ 			animate(lis[idx],{"opacity" : 0},1000);
+ 			idx++;
+ 			if(idx > imgLength-1){
+ 				idx = 0;
+ 			}
+ 			animate(lis[idx],{"opacity" : 1},1000);
+ 			changeCircle();
+ 		}
+
+ 			left.onclick = function(){
+ 				if(lis[idx].isanimated) return;
+ 				animate(lis[idx],{"opacity" : 0},1000);
+ 				idx--;
+ 			if(idx < 0){
+ 				idx = imgLength - 1;
+ 			}
+ 			animate(lis[idx],{"opacity" : 1},1000);
+ 			changeCircle();
+ 		}
+
+			for(var i = 0 ; i <= imgLength-1  ; i++){
+			dian[i].index=i;
+			dian[i].onmouseover = function(){
+				if(lis[idx].isanimated) return;
+ 				animate(lis[idx],{"opacity" : 0},1000);
+ 				idx = this.index;
+ 				animate(lis[idx],{"opacity" : 1},1000);
+ 				changeCircle();
+			}
+		}
+
+			function changeCircle(){
+			for (var i = 0; i < dian.length; i++) {
+				dian[i].className = "";
+			}
+			dian[idx].className = "cur";
+		}
+	</script>
+</body>
+</html>

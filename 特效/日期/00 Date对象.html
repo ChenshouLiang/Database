@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title> Date对象 </title>
+  <script type="text/javascript">
+	
+	//var my_date = new Date(); new 是一个关键字，表示创建一个对象实例
+	//对象实例的名称 my_date  Date就是一个类
+	var my_date = new Date();
+	window.alert(typeof(my_date));
+	
+	//如果我们使用某个对象的方法，基本语法是
+	//对象名.方法(参数,....)
+	window.alert(my_date.toLocaleString());
+
+	/*
+	请使用Date对象，显示规定形式的日期
+	xxxx年xx月xx日 
+	比如:2022年11月11日 
+	*/
+	/*
+	思路 ：获取到 年，月 ，日后，再拼接
+	*/
+	var year = my_date.getFullYear();
+	var month = my_date.getMonth()+1;
+	var day = my_date.getDate();
+	var res_date = year + "年" + month + "月" + day + "日";
+	//window.alert(res_date);
+
+	/*
+		根据用户指定的时间，来创建一个Date对象
+	*/
+	// 这里请注意，如果通过分开指定数值，月是 0-11
+	var my_date = new Date(2018, 9, 9, 11, 11 ,11);
+	window.alert(my_date.toLocaleString());
+
+	var my_date2 = new Date("2019/9/9 11:11:11");
+	window.alert(my_date2.toLocaleString());
+
+	//请计算my_date2 和 my_date相差多少天?
+	
+	var date_inter = (my_date2 - my_date)/1000/3600/24;
+		
+	window.alert(date_inter);
+	//计算自己活了多少天.
+
+	
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

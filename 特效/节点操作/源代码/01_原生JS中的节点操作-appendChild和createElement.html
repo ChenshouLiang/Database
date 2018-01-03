@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="txt"/>
+	<input type="button" value="按我" id="btn"/>
+	<ul>
+		<li>AAAA</li>
+		<li>BBBB</li>
+		<li>CCCC</li>
+	</ul>
+	
+	<script type="text/javascript">
+		var ul = document.getElementsByTagName("ul")[0];
+		var btn =	document.getElementById("btn");
+		var txt = document.getElementById("txt");
+
+		btn.onclick = function(){
+			//创建一个li标签，用变量oLi来表示。创建出来的节点不是任何节点的儿子，
+			//也就是说没有在DOM树上，
+			var oLi = document.createElement("li");
+			oLi.innerHTML = txt.value;	//改变这个节点里面的内容
+
+			//把新创建的节点，追加到DOM树上
+			ul.appendChild(oLi);
+		}
+	</script>
+</body>
+</html>

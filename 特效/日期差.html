@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="radio">
+		<input type="radio" name="radio" id="shang" value="卖家">
+		<label for="shang">卖家</label>
+		<input type="radio" name="radio" id="mai" value="买家"><label for="mai">买家</label>
+	</div>
+	<div id="shangshop">
+		开始时间：<input type="text" id="start">
+		结束时间：<input type="text" id="end">
+		<input type="submit" value="确定" id="submit">
+	</div>
+	<div id="con"></div>
+	<script>
+		var con = document.getElementById('con');
+		var shangshop = document.getElementById('shangshop');
+		var radio = document.getElementById('radio');
+		var radios = radio.getElementsByTagName('input');
+		var submit = document.getElementById("submit");
+		var timer = null;
+		
+		submit.onclick = function () {
+			// clearInterval(timer);
+			timer = setInterval(time,1000);
+		}
+		function time() {
+			var start = document.getElementById('start');
+			var end = document.getElementById('end');
+			var startValue = start.value;
+			var endValue = end.value;
+			var localTime = new Date();
+			var startTime = new Date(startValue);
+			var endTime = new Date(endValue);
+			var dtC = startTime.getTime() - localTime.getTime();
+			
+			var a = null;
+			if (dtC < 0) {
+				dtC = endTime.getTime() - localTime.getTime();
+				a = "后抢购结束";
+			}else{
+				a = "后开始抢购";
+			}
+			console.log(dtC);
+			var years = Math.floor(dtC/(365*24*60*60*1000));
+			//计算天数
+			var days = Math.floor(dtC/(1000*60*60*24)%365);
+			//计算小时数
+			var hours = Math.floor(dtC/(1000*60*60)%24);
+			//计算分钟数
+			var minutes = Math.floor(dtC/(1000*60)%60);
+			//计算秒数
+			var seconds = Math.floor(dtC/1000%60);
+			con.innerHTML = years+"年 "+days+"天 "+hours+"小时 "+minutes+" 分钟"+seconds+" 秒" + a;
+			if (endTime.getTime() - localTime.getTime() < 0) {
+				con.innerHTML = "抢购已结束";
+				clearInterval(timer);
+			}
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title> 窗口的打开和关闭 </title>
+  <script type="text/javascript">
+	function openWindow()
+	{
+		/**
+			@new.html是你要打开的新页面
+			@myNewWindow 新窗口名, 如果我们设置为 "_self" 则替换本窗口 "_blank",打开新的窗口
+			@第三个参数，说明你要打开的新窗口的样式
+		*/
+		
+		var myNewWindow = window.open("new.html", "_blank", "width=200px,height=300px,toolbar=yes,menubar=yes,resizable=yes,titlebar=yes,top=100px,left=300px");
+		//myNewWindow窗口的名称，可以访问新的窗口
+		myNewWindow.document.write("hello,1000");
+		//如果希望打开的新窗口，5秒后自动关闭
+		//setTimeout
+		myNewWindow.setTimeout("window.close()", 5000);
+
+	}
+	function closeWindow()
+	{
+		if(window.confirm("真的要关闭该窗口"))
+		{
+			window.close();
+		}
+	}
+
+
+  </script>
+ </head>
+ <body>
+  <input type="button" value="打开新窗口" onclick="openWindow()">
+  <input type="button" value="关闭窗口" onclick="closeWindow()">
+ </body>
+</html>
